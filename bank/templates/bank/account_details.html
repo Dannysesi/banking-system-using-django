@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Account Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Account Details</h2>
+    
+    <div class="row">
+        <!-- Account Overview -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Overview</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Account Name:</strong> {{ account.user.first_name }} {{ account.user.last_name }}</p>
+                    <p><strong>Account Number:</strong> {{ account.account_number }}</p>
+                    <p><strong>Account Type:</strong> {{ account.get_account_type_display }}</p>
+                    <p><strong>Balance:</strong> {{ account.currency }}-{{ account.balance }}</p>
+                    <p><strong>Status:</strong> {{ account.get_status_display }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Creation Information -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Account Info</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Created At:</strong> {{ account.created_at }}</p>
+                    <p><strong>Last Updated:</strong> {{ account.updated_at }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deposit & Withdraw Buttons -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a href="{% url 'deposit' account.id %}" class="btn btn-success btn-lg mx-2">
+                Deposit Funds
+            </a>
+            <a href="{% url 'withdraw' account.id %}" class="btn btn-danger btn-lg mx-2">
+                Withdraw Funds
+            </a>
+        </div>
+    </div>
+
+    <!-- Future Features -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">More Features Coming Soon</h5>
+                </div>
+                <div class="card-body">
+                    <p>Stay tuned for more detailed analytics and account management tools.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
